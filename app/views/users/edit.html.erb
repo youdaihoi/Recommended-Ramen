@@ -1,0 +1,26 @@
+<div class="container">
+  <h4 class="pt-3">プロフィール編集</h4>
+  <% if @user.errors.any? %>
+    名前を入力してください
+  <% end %>
+  <table>
+    <tbody>
+      <%= form_with model: @user,local: true do |f| %>
+        <tr>
+          <div class ="mx-4 my-auto"><%= f.label :ユーザー名　　　%></div>
+          <div class ="mx-4 my-auto"><%= f.text_field :name, size: "40" %></div>
+        </tr>
+
+        <tr>
+          <div class ="mx-4 my-auto"><%= f.label :プロフィール画像 %></div>
+          <div class ="mx-4 my-auto"><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></div>
+          <div class ="mx-4 my-auto"><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %></div>
+        </tr>
+
+        <div stayle = "text-align:center;">
+          <div class ="mx-4 my-auto text-center"><%= f.submit '変更を保存', class: "btn btn-success"  %></div>
+        </div>
+     <% end %>
+    </tbody>
+  </table>
+</div>

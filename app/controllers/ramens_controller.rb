@@ -7,12 +7,15 @@ class RamensController < ApplicationController
   def create
     @ramen = Ramen.new(ramen_params)
     @ramen.user_id = current_user.id
-    @ramen.save
-    redirect_to ramens_path
+    if @ramen.save
+      redirect_to ramens_path
+    else
+      render :new
+    end
   end
 
   def index
-    @ramens = Ramen.all
+    @ramens = Ramen.page(params[:page]).reverse_order
   end
 
   def show
@@ -29,6 +32,8 @@ class RamensController < ApplicationController
  private
 
   def ramen_params
-    params.require(:ramen).permit(:shop_name, :image, :address, :category, :parking_lot)
+    params.require(:ramen).permit(
+      :shop_name, :image, :address, :category, :parking_lot, :postal_code, :prefecture_code, :city, :street
+      )
   end
 end

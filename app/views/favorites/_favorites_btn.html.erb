@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+  <% if @ramen.favorited_by?(current_user) %>
+    <p>
+      <%= link_to ramen_favorites_path(@ramen), method: :delete, remote: true do %>
+        ♥<%= @ramen.favorites.count %> いいね
+      <% end %>
+    </p>
+      <% else %>
+    <p>
+      <%= link_to ramen_favorites_path(@ramen), method: :post, remote: true do %>
+        ♡<%= @ramen.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+<% else %>
+  <p>♡<%= @ramen.favorites.count %> いいね</p>
+<% end %>

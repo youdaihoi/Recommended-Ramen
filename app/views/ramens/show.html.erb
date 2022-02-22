@@ -15,22 +15,40 @@
           <% if @ramen.user == current_user %>
             <%= link_to "削除", ramen_path(@ramen), method: :delete %>
           <% end %>
+          <div class=<%= "favorite_buttons_" + @ramen.id.to_s %>>
+            <%= render "favorites/favorites_btn", ramen: @ramen %>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="comment_all">
+    <%= render "post_comments/comment_table", ramen: @ramen ,post_comment: @post_comment %>
+  </div>
   <div>
-    <p>コメント件数：<%= @ramen.post_comments.count %></p>
-    <% @ramen.post_comments.each do |post_comment| %>
-      <p><%= image_tag('sample-author1.jpg') %></p>
-      <%= post_comment.user.name %>
-      <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <%# URL が正しく生成されないため %>
+    <%= form_with(model:[@ramen, @post_comment], url: ramen_post_comments_path(@ramen.id)) do |f| %>
+      <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+      <div class="star-form-group" id="star1">
+        <%= f.label :rate,'評価', class:'star-title' %>
+      </div>
+      <% if user_signed_in? %>
+        <%= f.submit "送信する" %>
+      <% else %>
+        <p>ログインしていないとコメントできません</p>
+      <% end %>
     <% end %>
   </div>
-  <div>
-    <%#= form_with(model:[@ramen, @post_comment], local: true) do |f| %>
-      <%#= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-      <%#= f.submit "送信する" %>
-    <%# end %>
-  </div>
 </div>
+
+<script>
+$('#star1').raty({
+  size     : 38,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'post_comment[rate]',    //カラムに保存
+  half: true,
+});
+
+</script>

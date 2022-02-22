@@ -1,8 +1,12 @@
+<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
 <div class="container col-xs-6">
   <div class="row">
 　　<div class="col-xs-12 mt-3">
  　　<h4><i class="fa-regular fa-bowl-chopsticks-noodles"></i>新しいラーメン店を追加する</h4>
  　　</div>
+    <% if @ramen.errors.any? %>
+      全て書き込んで投稿してください
+    <% end %>
     <div class="col-sm-10 px-sm-0 mx-auto md-5">
      <%= form_with model: @ramen, url: ramens_path, local:true do |f| %>
       <table>
@@ -16,6 +20,30 @@
           <div class="form-group">
             <th><%= f.label :住所 %></th>
             <th><%= f.text_field :address, placeholder:"住所" %></th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :郵便番号 %></th>
+            <th><%= f.text_field :postal_code, placeholder:"郵便番号" %></th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :都道府県 %></th>
+            <th><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %></th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :市区町村 %></th>
+            <th><%= f.text_field :city, placeholder:"市区町村" %></th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :丁目番地 %></th>
+            <th><%= f.text_field :street, placeholder:"丁目番地" %></th>
           </div>
         </tr>
         <tr>
