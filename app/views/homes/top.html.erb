@@ -1,0 +1,69 @@
+<div class = "container-fluid">
+  <h1 class = "my-3">おすすめランキング</h1>
+  <h2 class = "my-3">本日</h2>
+  <div class = "card-list-container py-3">
+    <% @today_ramen_ranks.each.with_index(1) do |ramen, i| %>
+     第<%= i %>位
+    <div class="card w-50 mx-auto mt-4 shadow-lg">
+     <%=link_to  ramen_path(ramen) do %>
+      <%= attachment_image_tag ramen, :image ,class:"card-img-top";%>
+     <% end %>
+      <div class = "card-body">
+        <div class = "row">
+          <p class = "card-title">
+            <%= ramen.shop_name %></br>
+            <%= ramen.prefecture_name %><%= ramen.city %><%= ramen.street %></br>
+            #<%= ramen.category.name %>
+            <%= ramen.parking_lot_i18n %>
+            <%= link_to "#{ramen.post_comments.count} コメント", ramen_path(ramen.id) %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <h2 class = "my-3">週間</h2>
+  <div class = "card-list-container py-3">
+    <% @week_ramen_ranks.each.with_index(1) do |ramen, i| %>
+     第<%= i %>位
+    <div class="card w-50 mx-auto mt-4 shadow-lg">
+     <%=link_to  ramen_path(ramen) do %>
+      <%= attachment_image_tag ramen, :image ,class:"card-img-top";%>
+     <% end %>
+      <div class = "card-body">
+        <div class = "row">
+          <p class = "card-title">
+            <%= ramen.shop_name %></br>
+            <%= ramen.prefecture_name %><%= ramen.city %><%= ramen.street %></br>
+            #<%= ramen.category.name %>
+            <%= ramen.parking_lot_i18n %>
+            <%= link_to "#{ramen.post_comments.count} コメント", ramen_path(ramen.id) %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <h2 class = "my-3">月間</h2>
+  <div class = "card-list-container py-3">
+    <% @month_ramen_ranks.each.with_index(1) do |ramen, i| %>
+     第<%= i %>位
+    <div class="card w-50 mx-auto mt-4 shadow-lg">
+     <%=link_to  ramen_path(ramen) do %>
+      <%= attachment_image_tag ramen, :image ,class:"card-img-top";%>
+     <% end %>
+      <div class = "card-body">
+        <div class = "row">
+          <p class = "card-title">
+            <%= ramen.shop_name %></br>
+            <%= ramen.prefecture_name %><%= ramen.city %><%= ramen.street %></br>
+            #<%= ramen.category.name %>
+            <%= ramen.parking_lot_i18n %>
+            <%= link_to "#{ramen.post_comments.count} コメント", ramen_path(ramen.id) %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

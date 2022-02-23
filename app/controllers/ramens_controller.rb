@@ -33,7 +33,7 @@ class RamensController < ApplicationController
 
   def ramen_params
     params.require(:ramen).permit(
-      :shop_name, :image, :address, :category, :parking_lot, :postal_code, :prefecture_code, :city, :street
+      :shop_name, :image, :category_id, :parking_lot, :postal_code, :prefecture_name, :city, :street
       )
   end
 end

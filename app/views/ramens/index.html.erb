@@ -10,8 +10,8 @@
         <div class = "row">
           <p class = "card-title">
             <%= ramen.shop_name %></br>
-            <%= ramen.address %></br>
-            #<%= ramen.category_i18n %>
+            <%= ramen.prefecture_name %><%= ramen.city %><%= ramen.street %></br>
+            #<%= ramen.category.name %>
             <%= ramen.parking_lot_i18n %>
             <%= link_to "#{ramen.post_comments.count} コメント", ramen_path(ramen.id) %>
           </p>

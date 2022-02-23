@@ -1,12 +1,6 @@
  ja:
     enums:
       ramen:
-        category:
-          tonkotsu: "とんこつ"
-          shoyu: "しょうゆ"
-          solt: "しお"
-          miso: "みそ"
-          others: "その他"
         parking_lot:
           exist: "駐車場あり"
           noexist: "駐車場なし"

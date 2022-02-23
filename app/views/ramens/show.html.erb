@@ -6,8 +6,10 @@
       <div class = "card-body">
         <div class = "row">
           <p class = "card-title">
-            <%= @ramen.address %></br>
-            #<%= @ramen.category_i18n %>
+            <div class= "ramenmap">
+              <%= @ramen.prefecture_name %><%= @ramen.city %><%= @ramen.street %></br>
+            </div>
+            #<%= @ramen.category.name %>
             <%= @ramen.parking_lot_i18n %>
           </p>
         </div>
@@ -41,6 +43,16 @@
   </div>
 </div>
 
+<div id='map'></div>
+
+<style>
+#map {
+  height: 400px;
+  width: 400px;
+}
+</style>
+
+
 <script>
 $('#star1').raty({
   size     : 38,
@@ -51,4 +63,36 @@ $('#star1').raty({
   half: true,
 });
 
+function initMap() {
+
+  var target = document.getElementById('map'); //マップを表示する要素を指定
+  var address = '<%= @ramen.prefecture_name %><%= @ramen.city %><%= @ramen.street %>'; //住所を指定
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({ address: address }, function(results, status){
+    if (status === 'OK' && results[0]){
+
+      console.log(results[0].geometry.location);
+
+       var map = new google.maps.Map(target, {
+         center: results[0].geometry.location,
+         zoom: 18
+       });
+
+       var marker = new google.maps.Marker({
+         position: results[0].geometry.location,
+         map: map,
+         animation: google.maps.Animation.DROP
+       });
+
+    }else{
+      //住所が存在しない場合の処理
+      alert('住所が正しくないか存在しません。');
+      target.style.display='none';
+    }
+  });
+}
 </script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
