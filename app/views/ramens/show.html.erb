@@ -1,54 +1,71 @@
-<div class="container-fluid">
-  <div class = "card-list-container py-3">
-    <h2><strong><%= @ramen.shop_name %></strong></h2>
-    <div class="card w-75 mx-auto mt-4 shadow-lg">
-      <%= attachment_image_tag @ramen, :image ,class:"card-img-top";%>
-      <div class = "card-body">
-        <div class = "row">
-          <p class = "card-title">
-            <div class= "ramenmap">
-              <%= @ramen.prefecture_name %><%= @ramen.city %><%= @ramen.street %></br>
-            </div>
-            #<%= @ramen.category.name %>
-            <%= @ramen.parking_lot_i18n %>
-          </p>
+<div class="container-fluid background">
+  <div class="row">
+    <div class='col-md-3'>
+      <table class="table table-bordered mx-2 mt-5">
+        <div class='col-md-3'>
+          <%= render 'layouts/category_table', categories: @categories %>
         </div>
-        <div>
-          <% if @ramen.user == current_user %>
-            <%= link_to "削除", ramen_path(@ramen), method: :delete %>
-          <% end %>
-          <div class=<%= "favorite_buttons_" + @ramen.id.to_s %>>
-            <%= render "favorites/favorites_btn", ramen: @ramen %>
+      </table>
+    </div>
+    <div class='col-md-8'>
+      <div class = "card-list-container py-3">
+        <div class="row w-75 mx-auto">
+          <h3 class="my-2 mt-5 font-weight-bold"><%= @ramen.shop_name %></h3>
+        </div>
+        <div class="card w-75 mx-auto mt-4 shadow-lg">
+          <%= attachment_image_tag @ramen, :image ,size: '400x400', class: "card-img-top";%>
+          <div class = "card-body mx-2">
+            <div class = "card-title">
+              <div class=<%= "favorite_buttons_" + @ramen.id.to_s %>>
+                <%= render "favorites/favorites_btn", ramen: @ramen %>
+              </div>
+              <p>[カテゴリ]</p>
+              <p class = "ml-5"><%= @ramen.category.name %></p>
+              <p>[住所]</p>
+              <p class = "ml-5"><%= @ramen.prefecture.name %><%= @ramen.city %><%= @ramen.street %></p>
+              <p>[駐車場]</p>
+              <p class = "ml-5"><%= @ramen.parking_lot_i18n %></p>
+              <div class="row justify-content-center">
+                <div id='map'></div>
+              </div>
+              <div class="row justify-content-end">
+                <p>[投稿日]<%= l @ramen.created_at, format: :short %></p>
+                <p>[投稿者]<%= @ramen.user.name %></p>
+              </div>
+              <div class="row justify-content-end">
+                <% if @ramen.user == current_user %>
+                  <%= link_to "削除", ramen_path(@ramen), method: :delete %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="w-75 mx-auto row justify-content-center">
+        <%# URL が正しく生成されないため %>
+        <%= form_with(model:[@ramen, @post_comment], url: ramen_post_comments_path(@ramen.id)) do |f| %>
+          <%= f.text_area :comment, rows:'3', cols:"80", placeholder: "コメントをここに" %>
+          <div class="star-form-group" id="star1">
+            <%= f.label :rate,'評価', class:'star-title' %>
+          </div>
+          <% if user_signed_in? %>
+            <%= f.submit "送信する" %>
+          <% else %>
+            <p>ログインしていないとコメントできません</p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="comment_all w-75 mx-auto">
+        <%= render "post_comments/comment_table", ramen: @ramen ,post_comment: @post_comment %>
+      </div>
     </div>
   </div>
-  <div class="comment_all">
-    <%= render "post_comments/comment_table", ramen: @ramen ,post_comment: @post_comment %>
-  </div>
-  <div>
-    <%# URL が正しく生成されないため %>
-    <%= form_with(model:[@ramen, @post_comment], url: ramen_post_comments_path(@ramen.id)) do |f| %>
-      <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-      <div class="star-form-group" id="star1">
-        <%= f.label :rate,'評価', class:'star-title' %>
-      </div>
-      <% if user_signed_in? %>
-        <%= f.submit "送信する" %>
-      <% else %>
-        <p>ログインしていないとコメントできません</p>
-      <% end %>
-    <% end %>
-  </div>
 </div>
-
-<div id='map'></div>
 
 <style>
 #map {
   height: 400px;
-  width: 400px;
+  width: 653.5px;
 }
 </style>
 
@@ -66,7 +83,7 @@ $('#star1').raty({
 function initMap() {
 
   var target = document.getElementById('map'); //マップを表示する要素を指定
-  var address = '<%= @ramen.prefecture_name %><%= @ramen.city %><%= @ramen.street %>'; //住所を指定
+  var address = '<%= @ramen.prefecture.name %><%= @ramen.city %><%= @ramen.street %>'; //住所を指定
   var geocoder = new google.maps.Geocoder();
 
   geocoder.geocode({ address: address }, function(results, status){

@@ -1,26 +1,29 @@
-<h2>Log in</h2>
-
-<%= form_with model: @user, url: user_session_path, local: true do |f| %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container-fluid background ">
+  <div class="row">
+    <div class="col-md-8 mt-5">
+      <h4 class="col-md-6 text-center"><span class="title font-weight-bold">ログイン</span></h4>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+  <div class="row">
+    <div class='mx-auto col-md-12 mt-3'>
+      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= render "devise/shared/links" %>
+        <div class="form-group row">
+          <%= f.label "名前", class: "col-md-4 col-form-label text-center" %>
+          <%= f.text_field :name, autofocus: true, class: "form-control col-sm-6" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :password, "パスワード(6文字以上)", class: "col-md-4 col-form-label text-center" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-sm-6" %>
+        </div>
+
+        <div class="action ml-3 mb-5">
+          <%= f.submit "ログイン", class: "btn btn-success col-md-3 offset-md-4 mt-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

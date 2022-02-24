@@ -1,29 +1,43 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
     <div class="container">
-      <a class="navbar-brand" href="/"><span>ラーメンおすすめ一覧</span></a>
+      <a class="navbar-brand" href="/"><h1>ラーメンおすすめ一覧</h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
+          <li><%= link_to ' ランキング',"/",class: 'text-light mr-3' %></li>
+          <li><%= link_to ' 新着一覧',ramens_path,class: 'text-light mr-3' %></li>
+          <li><%= link_to ' 投稿',new_ramen_path,class: 'text-light mr-3' %></li>
+        </ul>
+      </div>
+      <div><%= render 'searches/search' %></div>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
-          <li><%#= link_to ' Home',user_path(current_user),class: 'fas fa-home nav-link text-light' %></li>
-          <li><%#= link_to ' Users',users_path,class: 'fas fa-users nav-link text-light' %></li>
-          <li><%#= link_to ' Books',books_path ,class: 'fas fa-book-open nav-link text-light'%></li>
-          <li><%= link_to ' logout', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-light' %></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <p class="pt-2 "><%= attachment_image_tag current_user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></p>
+            </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item"><%= link_to ' マイページ',user_path(current_user) ,class: 'nav-link text-secondary'%></a>
+                <a class="dropdown-item"><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'nav-link text-secondary' %></a>
+              </div>
+          </li>
         <% else %>
-          <li><%#= link_to ' Home',root_path,class: 'fas fa-home nav-link text-light' %></li>
-          <li><%#= link_to ' About',home_about_path,class: 'fas fa-link nav-link text-light' %></li>
-          <li><%= link_to ' sign up', new_user_registration_path,class: 'fas fa-user-plus nav-link text-light' %></li>
-          <li><%= link_to ' login', new_user_session_path ,class: 'fas fa-sign-in-alt nav-link text-light'%></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user fa-2x"></i>
+            </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item"><%= link_to ' 新規登録', new_user_registration_path,class: 'nav-link text-secondary'%></a>
+                <a class="dropdown-item"><%= link_to ' ログイン', new_user_session_path,class: 'nav-link text-secondary' %></a>
+              </div>
+          </li>
         <% end %>
         </ul>
       </div>
-      <div>
-        <li><%= render 'searches/search' %></li>
-      </div>
     </div>
   </nav>
-  <%#= render 'searches/search' %>
 </header>

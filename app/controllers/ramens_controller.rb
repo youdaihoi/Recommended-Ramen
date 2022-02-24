@@ -15,10 +15,17 @@ class RamensController < ApplicationController
   end
 
   def index
-    @ramens = Ramen.page(params[:page]).reverse_order
+    @categories = Category.all
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @ramens = Ramen.where(category_id:@category.id).page(params[:page]).reverse_order
+    else
+      @ramens = Ramen.page(params[:page]).reverse_order
+    end
   end
 
   def show
+    @categories = Category.all
     @ramen = Ramen.find(params[:id])
     @post_comment = PostComment.new
   end
@@ -33,7 +40,7 @@ class RamensController < ApplicationController
 
   def ramen_params
     params.require(:ramen).permit(
-      :shop_name, :image, :category_id, :parking_lot, :postal_code, :prefecture_name, :city, :street
+      :shop_name, :image, :category_id, :parking_lot, :postal_code, :prefecture_code, :city, :street
       )
   end
 end

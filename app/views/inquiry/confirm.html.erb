@@ -1,30 +1,35 @@
-<div class="page-header">
-  <h1>お問い合わせ</h1>
-</div>
+<div class="container-fluid background">
+  <div class="row">
+    <div class="col-md-8 mt-5">
+      <h4 class="col-md-6 text-center"><span class="title">お問い合わせ</span></span></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class='mx-auto col-md-12 mt-3'>
+      <%= form_with model: @inquiry, url: inquiry_thanks_path, local: true do |f| %>
+        <div class="form-group row">
+          <%= f.label "名前", class: "col-md-4 col-form-label text-center" %>
+          <%= f.hidden_field :name %>
+          <%= @inquiry.name %>
+        </div>
 
-<%= form_for @inquiry, :url => inquiry_thanks_path do |f| %>
-  <table class="table">
-    <tr>
-      <th>名前</th>
-      <td>
-        <%= f.hidden_field :name %>
-        <%= @inquiry.name %>
-      </td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td>
-        <%= f.hidden_field :email %>
-        <%= @inquiry.email %>
-      </td>
-    </tr>
-    <tr>
-      <th>お問い合わせ内容</th>
-      <td>
-        <%= f.hidden_field :message %>
-        <%= simple_format(@inquiry.message) %>
-      </td>
-    </tr>
-  </table>
-  <%= f.submit '送信', :class => 'btn btn-primary' %>
-<% end %>
+        <div class="form-group row">
+          <%= f.label :email, "メールアドレス", class: "col-md-4 col-form-label text-center" %>
+          <%= f.hidden_field :email %>
+          <%= @inquiry.email %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :message, "お問い合わせ内容", class: "col-md-4 col-form-label text-center" %>
+          <%= f.hidden_field :message %>
+          <%= simple_format(@inquiry.message) %>
+        </div>
+
+        <div class="action ml-3 mb-3">
+          <%= f.submit "送信", class: "btn btn-primary col-md-1  mt-3 offset-md-4" %>
+          <%= link_to " 書き直す", inquiry_index_path, method: :get, class: "btn btn-danger col-md-1  mt-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

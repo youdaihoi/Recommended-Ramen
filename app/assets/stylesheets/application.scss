@@ -16,3 +16,21 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+ #error_explanation {
+  color: red;
+}
+
+.background {
+  background-image: image-url('restaurant_icons.png');
+}
+
+.footer-color {
+  background-color:#dc3545;
+  height: 110px;
+}
+
+.link-color {
+    text-decoration: none;
+    color: #008000;
+}

@@ -25,7 +25,7 @@
         <tr>
           <div class="form-group">
             <th><%= f.label :都道府県 %></th>
-            <th><%= f.collection_select :prefecture_name, JpPrefecture::Prefecture.all, :name, :name, include_blank: "住所" %></th>
+            <th><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, include_blank: "住所" %></th>
           </div>
         </tr>
         <tr>

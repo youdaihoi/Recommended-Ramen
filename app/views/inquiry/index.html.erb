@@ -1,32 +1,42 @@
-<%= form_for @inquiry, :url => inquiry_confirm_path do |f| %>
-  <div class="page-header">
-    <h1>お問い合わせ</h1>
-  </div>
-
-  <% if @inquiry.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <strong>入力内容にエラーがあります</strong>
-      <ul>
-        <% @inquiry.errors.each do |attr, msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<div class="container-fluid background">
+  <div class="row">
+    <div class="col-md-8 mt-5">
+      <h4 class="col-md-6 text-center"><span class="title">お問い合わせ</span></span></h4>
     </div>
-  <% end %>
+  </div>
+  <div class="row">
+    <div class='mx-auto col-md-12 mt-3'>
+      <%= form_with model: @inquiry, url: inquiry_confirm_path, local: true do |f| %>
+      <% if @inquiry.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <strong>入力内容にエラーがあります</strong>
+          <ul>
+            <% @inquiry.errors.each do |attr, msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <table class="table">
-    <tr>
-      <th>名前<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_field :email %></td>
-    </tr>
-    <tr>
-      <th>お問い合わせ内容</th>
-      <td><%= f.text_area :message %></td>
-    </tr>
-  </table>
-  <%= f.submit '確認', class: 'btn btn-primary' %>
-<% end %>
+        <div class="form-group row">
+          <%= f.label "名前", class: "col-md-4 col-form-label text-center" %>
+          <%= f.text_field :name, autofocus: true, class: "form-control col-md-6" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :email, "メールアドレス", class: "col-md-4 col-form-label text-center" %>
+          <%= f.email_field :email, autofocus: true, class: "form-control col-md-6" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :message, "お問い合わせ内容", class: "col-md-4 col-form-label text-center" %>
+          <%= f.text_area :message, rows:'5', autocomplete: true, class: "form-control col-md-6" %>
+        </div>
+
+        <div class="action ml-3 mb-3">
+          <%= f.submit "確認", class: "btn btn-primary col-md-3 offset-md-4 mt-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

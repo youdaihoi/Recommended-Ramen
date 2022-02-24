@@ -2,16 +2,18 @@
   <% if @ramen.favorited_by?(current_user) %>
     <p>
       <%= link_to ramen_favorites_path(@ramen), method: :delete, remote: true do %>
-        ♥<%= @ramen.favorites.count %> いいね
+        <i class="fas fa-heart"></i>
       <% end %>
+      <%= @ramen.favorites.count %>人がオススメしてます
     </p>
       <% else %>
     <p>
       <%= link_to ramen_favorites_path(@ramen), method: :post, remote: true do %>
-        ♡<%= @ramen.favorites.count %> いいね
+        <i class="far fa-heart"></i>
       <% end %>
+      <%= @ramen.favorites.count %>人がオススメしてます
     </p>
   <% end %>
 <% else %>
-  <p>♡<%= @ramen.favorites.count %> いいね</p>
+  <p><i class="far fa-heart"></i><%= @ramen.favorites.count %>がオススメします</p>
 <% end %>

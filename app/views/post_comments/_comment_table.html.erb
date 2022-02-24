@@ -1,18 +1,23 @@
 <p>コメント件数：<%= ramen.post_comments.count %></p>
-    <% ramen.post_comments.each do |post_comment| %>
-      <p><%= attachment_image_tag post_comment.user, :profile_image,size: "50x50", fallback: "no_image.jpg" %></p>
-      <%= post_comment.user.name %>
-      <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-      <div class="star-group">
-        <!--<div class="detail-value", id="star-rate-<%#= post_comment.id %>"></div>-->
-        <div class="eval-star"><%= post_comment.rate %>/5点</div>
+  <% ramen.post_comments.each do |post_comment| %>
+    <div class = "row">
+      <div class = "col-2">
+        <p><%= attachment_image_tag post_comment.user, :profile_image,size: "50x50", class: "rounded-circle", fallback: "no_image.jpg", class: "rounded-circle" %></p>
+        <p><%= post_comment.user.name %></p>
       </div>
-      <% if post_comment.user == current_user %>
-        <div>
-          <%= link_to "削除", ramen_post_comment_path(post_comment.ramen, post_comment), method: :delete, remote: true %>
+      <div class = "col-9 bg-light mb-3">
+        <div class="star-group">
+          <div class="eval-star">評価<%= post_comment.rate %>/5点</div>
         </div>
-      <% end %>
-    <% end %>
+        <p class = "ml-3"><%= post_comment.comment %></p>
+        <% if post_comment.user == current_user %>
+          <div>
+            <%= link_to "削除", ramen_post_comment_path(post_comment.ramen, post_comment), method: :delete, remote: true %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
 <script>
   $('#star-rate-<%= post_comment.id %>').raty({

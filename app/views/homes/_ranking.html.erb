@@ -1,0 +1,92 @@
+<div class="row mb-5">
+  <div class="col-md-4">
+    <table class="table table-bordered">
+      <thead class="table-secondary">
+        <tr>
+          <th class="col-4 text-center">今日のベスト５</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% today_ramen_ranks.each.with_index(1) do |ramen, i| %>
+          <tr class="bg-light">
+            <td>
+              <div class="row">
+                <div class="col-2 pl-2 pt-2"><%= i %>位</div>
+                <div class="col-4">
+                  <%=link_to  ramen_path(ramen) do %>
+                    <%= attachment_image_tag ramen, :image ,size: '40x40'%>
+                  <% end %>
+                </div>
+                <div class="col-4 pl-2 pt-2">
+                  <%=link_to  ramen_path(ramen) do %>
+                    <div class="text-dark"><%= ramen.shop_name %></div>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <table class="table table-bordered">
+      <thead class="table-secondary">
+        <tr>
+          <th class="col-4 text-center">今週のベスト５</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% week_ramen_ranks.each.with_index(1) do |ramen, i| %>
+          <tr class="bg-light">
+            <td>
+              <div class="row">
+                <div class="col-2 pl-2 pt-2"><%= i %>位</div>
+                <div class="col-4">
+                  <%=link_to  ramen_path(ramen) do %>
+                    <%= attachment_image_tag ramen, :image ,size: '40x40'%>
+                  <% end %>
+                </div>
+                <div class="col-4 pl-2 pt-2">
+                  <%=link_to  ramen_path(ramen) do %>
+                    <div class="text-dark"><%= ramen.shop_name %></div>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <table class="table table-bordered">
+      <thead class="table-secondary">
+        <tr>
+          <th class="col-4 text-center">今月のベスト５</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% month_ramen_ranks.each.with_index(1) do |ramen, i| %>
+          <tr class="bg-light">
+            <td>
+              <div class="row">
+                <div class="col-2 pl-2 pt-2"><%= i %>位</div>
+                <div class="col-4">
+                  <%=link_to  ramen_path(ramen) do %>
+                    <%= attachment_image_tag ramen, :image ,size: '40x40'%>
+                  <% end %>
+                </div>
+                <div class="col-4 pl-2 pt-2">
+                  <%=link_to  ramen_path(ramen) do %>
+                    <div class="text-dark"><%= ramen.shop_name %></div>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<thead class="thead-dark">
+  <tr>
+    <th>カテゴリ一覧</th>
+  </tr>
+</thead>
+<tbody class="bg-light">
+  <% categories.each do |category| %>
+  <tr>
+    <td class=""><%= link_to category.name, ramens_path(category_id: category.id), class: "text-secondary" %></td>
+  </tr>
+  <% end %>
+</tbody>

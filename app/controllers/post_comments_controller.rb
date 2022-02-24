@@ -4,7 +4,7 @@ class PostCommentsController < ApplicationController
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.ramen_id = @ramen.id
     unless @post_comment.save
-      render 'ramens/show'
+      render 'error'
     end
   end
 

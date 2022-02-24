@@ -1,4 +1,1 @@
-$("#ramen_<%= @ramen.id %>").html("コメント件数: <%= @ramen.post_comments.count %>");
-console.log("<%= j(render 'post_comments/comment_table', ramen: @ramen, post_comment: @post_comment) %>");
 $(".comment_all").html("<%= j(render 'post_comments/comment_table', ramen: @ramen, post_comment: @post_comment) %>");
-$("#post_comment_comment").val("");

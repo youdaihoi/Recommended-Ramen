@@ -1,12 +1,8 @@
 class SearchesController < ApplicationController
   def search
     @ramens = Ramen.search(params[:search])
+    @categories = Category.all
     render "index"
-  end
-  
-  #ここのindexは必要ない？
-  def index
-    @ramens = Ramen.search(params[:search])
   end
 
 end
