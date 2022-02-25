@@ -1,5 +1,6 @@
-class Ramen < ApplicationRecord
+# frozen_string_literal: true
 
+class Ramen < ApplicationRecord
   belongs_to :user
   belongs_to :category
   attachment :image
@@ -21,12 +22,19 @@ class Ramen < ApplicationRecord
 
   enum parking_lot: { exist: 0, noexist: 1 }
 
-  #住所機能
-   include JpPrefecture
-   jp_prefecture :prefecture_code
+  # 住所機能
+  include JpPrefecture
+  jp_prefecture :prefecture_code
 
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+  end
 
-   def self.search(keyword)
-    where(["shop_name like? OR city like?" , "%#{keyword}%", "%#{keyword}%"])
-   end
+  def prefecture_name=(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
+
+  def self.search(keyword)
+    where(['shop_name like? OR city like?', "%#{keyword}%", "%#{keyword}%"])
+  end
 end

@@ -18,10 +18,10 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <p class="pt-2 "><%= attachment_image_tag current_user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></p>
+              <p class="pt-2 "><%= attachment_image_tag current_user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", size: "60", class: "rounded-circle" %></p>
             </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item"><%= link_to ' マイページ',user_path(current_user) ,class: 'nav-link text-secondary'%></a>
+                <a class="dropdown-item"><%= link_to ' マイページ',user_path(current_user.id) ,class: 'nav-link text-secondary'%></a>
                 <a class="dropdown-item"><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'nav-link text-secondary' %></a>
               </div>
           </li>

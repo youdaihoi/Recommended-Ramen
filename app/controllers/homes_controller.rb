@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomesController < ApplicationController
   def top
     @ramen_ranks = Ramen.find(Favorite.group(:ramen_id).order('count(ramen_id) desc').limit(3).pluck(:ramen_id))

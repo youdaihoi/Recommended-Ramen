@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InquiryController < ApplicationController
   def index
     @inquiry = Inquiry.new
@@ -6,9 +8,9 @@ class InquiryController < ApplicationController
   def confirm
     @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))
     if @inquiry.valid?
-      render :action => 'confirm'
+      render action: 'confirm'
     else
-      render :action => 'index'
+      render action: 'index'
     end
   end
 

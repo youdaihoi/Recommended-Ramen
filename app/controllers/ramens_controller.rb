@@ -1,5 +1,6 @@
-class RamensController < ApplicationController
+# frozen_string_literal: true
 
+class RamensController < ApplicationController
   def new
     @ramen = Ramen.new
   end
@@ -18,9 +19,9 @@ class RamensController < ApplicationController
     @categories = Category.all
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @ramens = Ramen.where(category_id:@category.id).page(params[:page]).reverse_order
+      @ramens = Ramen.where(category_id: @category.id).page(params[:page]).per(6).reverse_order
     else
-      @ramens = Ramen.page(params[:page]).reverse_order
+      @ramens = Ramen.page(params[:page]).per(6).reverse_order
     end
   end
 
@@ -36,11 +37,11 @@ class RamensController < ApplicationController
     redirect_to ramens_path
   end
 
- private
+  private
 
   def ramen_params
     params.require(:ramen).permit(
       :shop_name, :image, :category_id, :parking_lot, :postal_code, :prefecture_code, :city, :street
-      )
+    )
   end
 end

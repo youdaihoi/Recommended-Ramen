@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostComment < ApplicationRecord
   belongs_to :user
   belongs_to :ramen
@@ -7,5 +9,4 @@ class PostComment < ApplicationRecord
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1
   }, presence: true
-
 end

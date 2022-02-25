@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -20,5 +22,4 @@ module RecommendedRamen
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
   end
-
 end

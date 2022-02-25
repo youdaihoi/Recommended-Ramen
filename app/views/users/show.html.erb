@@ -1,30 +1,55 @@
-<div class = "background">
-  <h3><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %><%= @user.name %></h3>
-  <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
-<div class = "container-fluid">
-  <h1 class = "my-3">投稿したラーメン店</h1>
-  <div class = "card-list-container py-3">
-    <% @ramens.each do |ramen| %>
-    <div class="card w-50 mx-auto mt-4 shadow-lg">
-     <%=link_to  ramen_path(ramen) do %>
-      <%= attachment_image_tag ramen, :image ,class:"card-img-top";%>
-     <% end %>
-      <div class = "card-body">
-        <div class = "row">
-          <p class = "card-title">
-            <%= ramen.shop_name %></br>
-            <%= ramen.prefecture.name %><%= ramen.city %><%= ramen.street %></br>
-            #<%= ramen.category.name %>
-            <%= ramen.parking_lot_i18n %>
-            <%= link_to "#{ramen.post_comments.count} コメント", ramen_path(ramen.id) %>
-          </p>
-        </div>
-      </div>
+<div class = "container-fluid background">
+  <div class="row">
+    <h1 class="ml-5 mt-5 font-weight-bold">マイページ</h1>
+  </div>
+  <div class="row">
+    <div class="col-4 row justify-content-center mt-4">
+      <p><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, class: "rounded-circle", format: 'jpeg', fallback: "no_image.jpg" %></p>
     </div>
-    <% end %>
+    <div class="col-4 row justify-content-center mt-5">
+      <h3 class="px-3">ユーザー名</h3>
+      <h3><%= @user.name %></h3>
+    </div>
+    <div class="col-4 row justify-content-center mt-5">
+      <% if @user.id == current_user.id %>
+        <h4><%= link_to "プロフィール編集", edit_user_path(@user) %></h4>
+      <% end %>
+    </div>
+  </div>
+  <div class="row ml-5 mt-5">
+    <div class="col-3 text-center">
+      <h2 class="ml-3">投稿したラーメン店</h2>
+    </div>
+　</div>
+　<div class="row mx-5 mt-5 d-flex justify-content-center align-items-center">
+    <div class="col-12">
+      <table class="table table-hover table-inverse ">
+        <thead class="table-secondary">
+          <th>投稿日時</th>
+          <th>店名</th>
+          <th>コメント数</th>
+          <th>いいね数</th>
+        </thead>
+        <tbody>
+          <% @user.ramens.each do |ramen| %>
+            <tr>
+              <td>
+                <%= link_to ramen_path(ramen) do %>
+                  <%= l ramen.created_at, format: :default %>
+                <% end %>
+              </td>
+              <td><%= ramen.shop_name %></td>
+              <td>
+                <span class="ml-4"><%= ramen.post_comments.count %></span>
+              </td>
+              <td>
+                <span class="ml-4"><%= ramen.favorites.count %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <%= paginate @ramens %>

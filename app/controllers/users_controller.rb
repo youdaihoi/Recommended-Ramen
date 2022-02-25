@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
@@ -6,16 +8,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-  end
-
-  def create
-    @ramen = User.find(params[:id])
-    @ramen.user_id = current_user.id
-    if @ramen.save
-      redirect_to user_path(@user.id)
-    else
-      render :edit
-    end
+    redirect_to root_path unless @user.id == current_user.id
   end
 
   def update
@@ -32,5 +25,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image)
   end
-
 end

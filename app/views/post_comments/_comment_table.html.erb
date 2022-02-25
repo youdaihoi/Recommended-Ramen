@@ -2,7 +2,7 @@
   <% ramen.post_comments.each do |post_comment| %>
     <div class = "row">
       <div class = "col-2">
-        <p><%= attachment_image_tag post_comment.user, :profile_image,size: "50x50", class: "rounded-circle", fallback: "no_image.jpg", class: "rounded-circle" %></p>
+        <p><%= attachment_image_tag post_comment.user, :profile_image,size: "50x50", class: "rounded-circle", fallback: "no_image.jpg", size: "60", class: "rounded-circle" %></p>
         <p><%= post_comment.user.name %></p>
       </div>
       <div class = "col-9 bg-light mb-3">
@@ -19,14 +19,4 @@
     </div>
   <% end %>
 
-<script>
-  $('#star-rate-<%= post_comment.id %>').raty({
-    size: 38,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    half: true,
-    readOnly: true,　　　　　　　　　　//readOnlyオプションで読み込み専用とする。編集できない。
-    score: <%= post_comment.rate %>,　//評価内容を取得
-  });
-</script>
+

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddColumnsToRamen < ActiveRecord::Migration[5.2]
   def change
     add_column :ramen, :postal_code, :integer
