@@ -1,4 +1,4 @@
-<div class="container-fluid background ">
+<div class="container-fluid background">
   <div class="row">
     <div class="col-md-8 mt-5">
       <h4 class="col-md-6 text-center"><span class="title font-weight-bold">ログイン</span></h4>
@@ -11,12 +11,12 @@
 
         <div class="form-group row">
           <%= f.label "名前", class: "col-md-4 col-form-label text-center" %>
-          <%= f.text_field :name, autofocus: true, class: "form-control col-sm-6" %>
+          <%= f.text_field :name, autofocus: true, class: "form-control col-md-6" %>
         </div>
 
         <div class="form-group row">
           <%= f.label :password, "パスワード(6文字以上)", class: "col-md-4 col-form-label text-center" %>
-          <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-sm-6" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-md-6" %>
         </div>
 
         <div class="action ml-3 mb-5">

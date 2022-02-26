@@ -1,32 +1,32 @@
 <div class = "container-fluid background">
   <div class="row">
-    <div class='col-md-3'>
+    <div class='col-md-2'>
       <table class="table table-bordered mx-2 mt-5">
         <div class='col-md-3'>
           <%= render 'layouts/category_table', categories: @categories %>
         </div>
       </table>
     </div>
-    <div class='col-md-8'>
-      <h2 class = "my-2 mt-5 font-weight-bold text-center">おすすめランキング</h1>
-      <div class = "card-list-container py-3">
+    <div class='col-md-10'>
+      <h1 class = "my-2 mt-5 font-weight-bold text-center">おすすめランキング</h1>
+      <div class = "card-list-container py-3 ">
         <% @ramen_ranks.each.with_index(1) do |ramen, i| %>
-        <div class="row w-50 mx-auto">
+        <div class="row w-75 mx-auto">
           <i class="fas fa-crown" style='color: gold;'></i>
           <h3 class="mr-5 ">第<%= i %>位</h3>
           <h3><%= ramen.shop_name %></h3>
         </div>
-        <div class="card w-50 mx-auto shadow-lg mb-5">
+        <div class="card w-75  mx-auto shadow-lg mb-5">
           <%=link_to  ramen_path(ramen) do %>
-          <%= attachment_image_tag ramen, :image ,size: '300x300',class: "card-img-top";%>
+          <div class="picture"><%= attachment_image_tag ramen, :image ,class: "card-img-top";%></div>
           <% end %>
           <div class = "card-body">
             <div class = "row">
-              <div class = "col-4">
+              <div class = "col-2 ml-4">
                 <%= attachment_image_tag ramen.user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></p>
               </div>
-              <div class="card-title col-8">
-                <%= ramen.prefecture.name %><%= ramen.city %><%= ramen.street %></br>
+              <div class="card-title col-9">
+                <h4><%= ramen.prefecture.name %><%= ramen.city %><%= ramen.street %></h4>
                 <%= link_to "#{ramen.post_comments.count} コメント", ramen_path(ramen.id),class: "link-color" %>
                 　<i class="far fa-heart"></i><%= ramen.favorites.count %> おすすめ
               </div>
