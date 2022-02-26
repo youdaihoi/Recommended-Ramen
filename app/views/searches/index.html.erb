@@ -26,6 +26,7 @@
                 <%= attachment_image_tag ramen.user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", size: "60", class: "rounded-circle" %></p>
               </div>
               <div class="card-title col-9">
+                <%= ramen.shop_name %></br>
                 <%= ramen.prefecture.name %><%= ramen.city %><%= ramen.street %></br>
                 <%= link_to "#{ramen.post_comments.count} コメント", ramen_path(ramen.id),class: "link-color" %>
                 　<i class="far fa-heart"></i><%= ramen.favorites.count %> おすすめ
