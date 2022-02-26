@@ -23,7 +23,7 @@
           <div class = "card-body">
             <div class = "row">
               <div class = "col-2 ml-4">
-                <%= attachment_image_tag ramen.user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></p>
+                <%= attachment_image_tag ramen.user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", size: "60", class: "rounded-circle" %></p>
               </div>
               <div class="card-title col-9">
                 <h4><%= ramen.prefecture.name %><%= ramen.city %><%= ramen.street %></h4>
