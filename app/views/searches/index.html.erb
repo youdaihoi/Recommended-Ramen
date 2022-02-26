@@ -8,7 +8,9 @@
       </table>
     </div>
     <div class='col-md-9'>
-      <h1 class = "my-3">検索結果</h1>
+      <h1 class = "row my-3">
+        <span class="ml-5 mt-4">検索結果</span>
+      </h1>
       <% if @ramens.size == 0 %>
        <p>検索結果がありませんでした</p>
       <% end %>
@@ -21,7 +23,7 @@
           <div class = "card-body">
             <div class = "row">
               <div class = "col-3">
-                <%= attachment_image_tag ramen.user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></p>
+                <%= attachment_image_tag ramen.user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", size: "60", class: "rounded-circle" %></p>
               </div>
               <div class="card-title col-9">
                 <%= ramen.prefecture.name %><%= ramen.city %><%= ramen.street %></br>
@@ -33,7 +35,7 @@
         </div>
         <% end %>
       </div>
+      <div class="row justify-content-center"><%= paginate @ramens %></div>
     </div>
-    <% paginate @ramens %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 /*global $*/
-$(function() {
-  return $('#ramen_postal_code').jpostal({
+$(document).on('turbolinks:load', function(){
+   $('#ramen_postal_code').jpostal({
     postcode: ['#ramen_postal_code'],
     address: {
       '#ramen_prefecture_code': '%3',

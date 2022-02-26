@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RamensController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
+
   def new
     @ramen = Ramen.new
   end
