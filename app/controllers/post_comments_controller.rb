@@ -12,7 +12,6 @@ class PostCommentsController < ApplicationController
     @ramen = Ramen.find(params[:ramen_id])
     @post_comment = PostComment.find_by(id: params[:id])
     @post_comment.destroy
-    # redirect_to ramen_path(params[:ramen_id])
   end
 
   private

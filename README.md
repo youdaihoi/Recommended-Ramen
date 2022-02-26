@@ -23,7 +23,7 @@
 また、ラーメン屋の場所を知りたいとき。
 
 ## 設計書
-<...>
+https://docs.google.com/spreadsheets/d/1Q9omOA4p2fEQcD_UZi_IqD5Hg3Wphbee/edit#gid=501181805
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1C8fYyTZ9EYOKkikSutTEMJxxnnhS4KjvfznpM3gBwP8/edit#gid=0
@@ -34,6 +34,3 @@ https://docs.google.com/spreadsheets/d/1C8fYyTZ9EYOKkikSutTEMJxxnnhS4KjvfznpM3gB
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-- 使用検討中です。
