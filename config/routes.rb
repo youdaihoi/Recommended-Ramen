@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'relationships/followings'
+  get 'relationships/followers'
   get 'inquiry/index'
   post 'inquiry/confirm'
   post 'inquiry/thanks'
