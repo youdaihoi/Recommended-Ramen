@@ -24,11 +24,6 @@ RSpec.describe User, type: :model do
     expect(FactoryBot.build(:user, password: "")).to_not be_valid 
   end 
 
-  it "パスワードが暗号化されているか" do 
-    user = FactoryBot.create(:user)
-    expect(user.password_digest).to_not eq "password"
-  end 
-
   it "password_confirmationとpasswordが異なる場合保存できない" do 
     expect(FactoryBot.build(:user,password:"password",password_confirmation: "passward")).to_not be_valid 
   end 
