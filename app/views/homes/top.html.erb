@@ -29,6 +29,11 @@
                 <h4><%= ramen.prefecture.name %><%= ramen.city %><%= ramen.street %></h4>
                 <%= link_to "#{ramen.post_comments.count} コメント", ramen_path(ramen.id),class: "link-color" %>
                 　<i class="far fa-heart"></i><%= ramen.favorites.count %> おすすめ
+                <% if current_user.following?(ramen.user) %>
+                  <%= link_to "フォロー外す", user_relationships_path(ramen.user_id), method: :delete, class: "btn btn-primary" %>
+                <% else %>
+                  <%= link_to "フォローする", user_relationships_path(ramen.user_id), method: :post, class: "btn btn-success" %>
+                <% end %>
               </div>
             </div>
            </div>
