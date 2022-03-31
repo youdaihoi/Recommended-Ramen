@@ -24,7 +24,6 @@
             <div class = "row">
               <div class = "col-3 ml-4">
                 <%= attachment_image_tag ramen.user, :profile_image, :fill, 55, 55, class: "rounded-circle",format: 'jpeg', fallback: "no_image.jpg", size: "60", class: "rounded-circle" %></p>
-                <%= link_to "#{ramen.post_comments.count} コメント", ramen_path(ramen.id),class: "link-color" %>
                 <% if current_user.following?(ramen.user) %>
                   <%= link_to "フォロー外す", user_relationships_path(ramen.user_id), method: :delete, class: "btn btn-primary" %>
                 <% else %>
