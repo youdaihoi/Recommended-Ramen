@@ -57,7 +57,7 @@
       <div class="w-75 mx-auto row justify-content-center">
         <%# URL が正しく生成されないため %>
         <%= form_with(model:[@ramen, @post_comment], url: ramen_post_comments_path(@ramen.id)) do |f| %>
-          <%= f.text_area :comment, rows:'3', cols:"80", placeholder: "コメントをここに" %>
+          <%= f.text_area :comment, rows:'3', cols:"80", placeholder: "コメントをここにする" %>
           <div class="star-form-group" id="star1">
             <%= f.label :rate,'評価', class:'star-title' %>
           </div>
