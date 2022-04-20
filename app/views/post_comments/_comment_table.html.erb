@@ -11,7 +11,7 @@
         </div>
         <p class = "ml-3"><%= post_comment.comment %></p>
         <% if post_comment.user == current_user %>
-          <div>
+          <div class="row justify-content-end mr-5">
             <%= link_to "削除", ramen_post_comment_path(post_comment.ramen, post_comment), method: :delete, remote: true %>
           </div>
         <% end %>
